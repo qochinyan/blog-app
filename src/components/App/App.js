@@ -13,7 +13,7 @@ function App() {
   };
 
   return (
-    <div className='App'>
+    <div className="App">
       {posts.map((post) => (
         <Post key={post.id} post={post} user={findUser(post.userId)} />
       ))}

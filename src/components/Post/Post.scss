@@ -1,5 +1,6 @@
+@import "../../style/mixins.scss";
 .postContainer{
-    max-width: 700px;
+    max-width: 900px;
     height: 200px;
     background-color: rgb(236, 236, 236);
     border-radius: 10px;
@@ -16,6 +17,7 @@
         .editImg,.delImg{
             width: 30px;
             margin-left:20px;
+            @include no-select;
         }
     }
     .editImg:hover, .delImg:hover{
@@ -24,11 +26,14 @@
     }
     .innerPost{
         padding: 20px 10px;
+        width: 800px;
+        position: relative;
     }
 }
 .PostText{
-
-    
+    position: absolute;
+    text-align: start;
+    word-break: break-all;
     & a{
         text-decoration:none;
         font-weight: 500;
@@ -36,4 +41,14 @@
     & .PostTextInner{
         font-weight:500;
     }
+}
+.commentShower{
+    @include no-select;
+    cursor: pointer;
+    border: none;
+    transition: .3s ease-in-out;
+    padding: 3px 10px;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background:linear-gradient(to right bottom , rgb(255, 0, 132), rgb(255, 0, 68));
 }
