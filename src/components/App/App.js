@@ -14,8 +14,8 @@ function App() {
 
   return (
     <div className="App">
-      {posts.map((post) => (
-        <Post key={post.id} post={post} user={findUser(post.userId)} />
+      {posts.map((post,i) => (
+        <Post key={i} posts={posts} id={post.id} setPosts={setPosts}  post={post} user={findUser(post.userId)} />
       ))}
     </div>
   );
