@@ -8,5 +8,11 @@
     .createdAtComment{
         font-size: 17px;
         opacity: .8;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .dataComment{
+            font-size: 15px;
+        }
     }
 }

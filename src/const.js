@@ -6,23 +6,30 @@ export const posts = [
     createdAt: "2022-12-15",
     userId: "me",
     modifiedAt: null,
-    text: "React vs Angular: Which JS Framework to Pick for Front-end Developmeergergergergreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeent? What do you think",
+    text: "React vs Angular: Whichgfngrfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framework to Pick for Front-end Developmeergergergergreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeent? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think?",
     category: "Any category",
     title: "Any title",
-    comments: [
-      {
-        id: uuidv4(),
-        userId: "user_1",
-        text: "any comment text",
-        createdAt: "2022-12-15"
-      },
-      {
-        id: uuidv4(),
-        userId: "user_2",
-        text: "any comment text 2",
-        createdAt: "2022-12-16"
-      }
-    ]
+    comments:  []
+  },
+  {
+    id: uuidv4(),
+    createdAt: "2022-12-15",
+    userId: "me",
+    modifiedAt: null,
+    text: "React vs Angular: Whichgfngrfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framework to Pick for Front-end Developmeergergergergreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeent? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think?",
+    category: "Any category",
+    title: "Any title",
+    comments:  []
+  },
+  {
+    id: uuidv4(),
+    createdAt: "2022-12-15",
+    userId: "me",
+    modifiedAt: null,
+    text: "React vs Angular: Whichgfngrfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framework to Pick for Front-end Developmeergergergergreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeent? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think?",
+    category: "Any category",
+    title: "Any title",
+    comments:  []
   }
 ];
 

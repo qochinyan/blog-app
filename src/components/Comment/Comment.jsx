@@ -6,7 +6,7 @@ const Comment = ({comment})=>{
             {comment.text}
         </p>
         <span className="createdAtComment">
-           Posted : {comment.createdAt}
+            Տեղադրվել է : <span className="dataComment">{comment.createdAt}</span>
         </span>
     </div>
 } 

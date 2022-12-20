@@ -7,7 +7,7 @@ import Post from "../Post/Post";
 function App() {
   const [posts, setPosts] = useState(userPosts);
   const [users] = useState(authors);
-
+  const [watchingComments,setWatchingComments] = useState("")
   const findUser = (userId) => {
     return users.find((user) => user.id === userId);
   };
@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       {posts.map((post,i) => (
-        <Post key={i} posts={posts} id={post.id} setPosts={setPosts}  post={post} user={findUser(post.userId)} />
+        <Post openedCom={watchingComments} setOpenedCom={setWatchingComments} key={i} posts={posts} id={post.id} setPosts={setPosts}  post={post} user={findUser(post.userId)} />
       ))}
     </div>
   );
