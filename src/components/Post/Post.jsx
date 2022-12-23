@@ -2,23 +2,33 @@ import "./Post.scss";
 import React from "react";
 import truncate from "truncate";
 import Comment from "../Comment/Comment";
-import { v4 as uuidv4   }from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
-import 'moment/locale/hy-am'
-const Post = ({openedCom,setOpenedCom, posts, post, user, setPosts, id }) => {
+import "moment/locale/hy-am";
+const Post = ({
+  setDeleting,
+  setIndex,
+  setIsOpen,
+  openedCom,
+  setOpenedCom,
+  posts,
+  post,
+  user,
+  setPosts,
+}) => {
   const [seeMore, setSeeMore] = React.useState(false);
   // const [showComments, setShowComments] = React.useState(false);
   const [currentComment, setCurrentComment] = React.useState("");
-   moment().locale("hy-am")
-   let time = moment().format("LLL")
+  moment().locale("hy-am");
+  let time = moment().format("LLL");
   const handleSeeMore = () => {
     setSeeMore(!seeMore);
   };
   const handleCommentShow = () => {
     // setShowComments(!showComments);
-    let id ;
-    id = openedCom===post.id ?  "" : post.id
-    setOpenedCom(id)
+    let id;
+    id = openedCom === post.id ? "" : post.id;
+    setOpenedCom(id);
   };
   const handleNewCommentChange = (evt) => {
     setCurrentComment(evt.target.value);
@@ -44,6 +54,24 @@ const Post = ({openedCom,setOpenedCom, posts, post, user, setPosts, id }) => {
       alert("Cant post empty text");
     }
   };
+  function handleEdit() {
+    setIsOpen(true);
+    setIndex(
+      posts.findIndex((el) => {
+       return el.id === post.id;
+      })
+    );
+  }
+  function handleDelete() {
+    setIsOpen(true);
+    setDeleting(true)
+    setIndex(
+      posts.findIndex((el) => {
+       return el.id === post.id;
+      })
+    );
+
+  }
   return (
     <div className="wholePostContainer">
       <div className="postContainer">
@@ -54,11 +82,13 @@ const Post = ({openedCom,setOpenedCom, posts, post, user, setPosts, id }) => {
               className="editImg"
               src="https://cdn-icons-png.flaticon.com/512/1057/1057097.png"
               alt=""
+              onClick={handleEdit}
             />
             <img
               className="delImg"
               src="https://cdn-icons-png.flaticon.com/512/1632/1632602.png"
               alt=""
+              onClick={handleDelete}
             />
           </div>
         </div>
@@ -71,39 +101,42 @@ const Post = ({openedCom,setOpenedCom, posts, post, user, setPosts, id }) => {
           </p>
         </div>
       </div>
-      
+
       <span className="commentViewer">
         <button onClick={handleCommentShow} className="commentShower">
           {openedCom == post.id ? "Close Comments" : "Show Comments"}
         </button>
-        {openedCom !== post.id
-          && post.comments
-            ? "(" + post.comments.length + " Comments)"
-            : null}
+        {openedCom !== post.id && post.comments
+          ? "(" + post.comments.length + " Comments)"
+          : null}
       </span>
       <div className="commentsContainer">
-        { openedCom === post.id
-          ? <> <div className="typeNewComment">
-        <textarea
-          value={currentComment}
-          onChange={handleNewCommentChange}
-          className="newCommentTextarea"
-          name=""
-          id=""
-          cols="80"
-          rows="3"
-        ></textarea>
-        <div onClick={handleCommentAdd} className="submitComment">
-          <img
-            className="submitCommentIcon"
-            src="https://cdn-icons-png.flaticon.com/512/3388/3388627.png"
-            alt=""
-          />
-        </div>
-      </div> {post.comments.map((el, i) => {
-              return <Comment key={i} comment={el} /> 
+        {openedCom === post.id ? (
+          <>
+            {" "}
+            <div className="typeNewComment">
+              <textarea
+                value={currentComment}
+                onChange={handleNewCommentChange}
+                className="newCommentTextarea"
+                name=""
+                id=""
+                cols="80"
+                rows="3"
+              ></textarea>
+              <div onClick={handleCommentAdd} className="submitComment">
+                <img
+                  className="submitCommentIcon"
+                  src="https://cdn-icons-png.flaticon.com/512/3388/3388627.png"
+                  alt=""
+                />
+              </div>
+            </div>{" "}
+            {post.comments.map((el, i) => {
+              return <Comment key={i} comment={el} />;
             })}
-         </> : null}
+          </>
+        ) : null}
       </div>
     </div>
   );

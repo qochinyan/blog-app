@@ -16,7 +16,7 @@ export const posts = [
     createdAt: "2022-12-15",
     userId: "me",
     modifiedAt: null,
-    text: "React vs Angular: Whichgfngrfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framework to Pick for Front-end Developmeergergergergreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeent? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think?",
+    text: "What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think?",
     category: "Any category",
     title: "Any title",
     comments:  []
@@ -26,7 +26,7 @@ export const posts = [
     createdAt: "2022-12-15",
     userId: "me",
     modifiedAt: null,
-    text: "React vs Angular: Whichgfngrfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framework to Pick for Front-end Developmeergergergergreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeent? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think?",
+    text: "hi bro",
     category: "Any category",
     title: "Any title",
     comments:  []
