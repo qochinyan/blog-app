@@ -1,37 +1,37 @@
 import { v4 as uuidv4 } from "uuid";
 
-export const posts = [
-  {
-    id: uuidv4(),
-    createdAt: "2022-12-15",
-    userId: "me",
-    modifiedAt: null,
-    text: "React vs Angular: Whichgfngrfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framework to Pick for Front-end Developmeergergergergreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeent? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think?",
-    category: "Any category",
-    title: "Any title",
-    comments:  []
-  },
-  {
-    id: uuidv4(),
-    createdAt: "2022-12-15",
-    userId: "me",
-    modifiedAt: null,
-    text: "What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think?",
-    category: "Any category",
-    title: "Any title",
-    comments:  []
-  },
-  {
-    id: uuidv4(),
-    createdAt: "2022-12-15",
-    userId: "me",
-    modifiedAt: null,
-    text: "hi bro",
-    category: "Any category",
-    title: "Any title",
-    comments:  []
-  }
-];
+// export const posts = [
+//   {
+//     id: uuidv4(),
+//     createdAt: "2022-12-15",
+//     userId: "me",
+//     modifiedAt: null,
+//     text: "React vs Angular: Whichgfngrfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framewfnrtnfnfgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg JS Framework to Pick for Front-end Developmeergergergergreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeent? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think?",
+//     category: "Any category",
+//     title: "Any title",
+//     comments:  []
+//   },
+//   {
+//     id: uuidv4(),
+//     createdAt: "2022-12-15",
+//     userId: "me",
+//     modifiedAt: null,
+//     text: "What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think? What do you think?",
+//     category: "Any category",
+//     title: "Any title",
+//     comments:  []
+//   },
+//   {
+//     id: uuidv4(),
+//     createdAt: "2022-12-15",
+//     userId: "me",
+//     modifiedAt: null,
+//     text: "hi bro",
+//     category: "Any category",
+//     title: "Any title",
+//     comments:  []
+//   }
+// ];
 
 export const users = [
   {
@@ -50,3 +50,4 @@ export const users = [
     surname: "test_surname_2"
   }
 ];
+export const URL = "https://blog-app-aren-default-rtdb.firebaseio.com/"

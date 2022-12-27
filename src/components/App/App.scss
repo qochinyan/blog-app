@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+@import "../../style/mixins.scss";
+* {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  font-family: "open sans", sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  box-sizing: border-box;
+}
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 0 40px 0;
+}
+.postAdder {
+  position: absolute;
+  left: 20px;
+  top: 50px;
+  width: 17vw;
+  min-height: 300px;
+  background: linear-gradient(
+    to right bottom,
+    rgb(114, 50, 198),
+    rgb(249, 45, 126)
+  );
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.postAdder button{
+  width: 90%;
+  height: 7vh;
+  border: none;
+  background-color: white;
+  color: rgb(255, 10, 67);
+  font-weight: 400;
+  font-size: 24px;
+  transition: .5s cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  @include no-select
+}
+.postAdder button:hover{
+  cursor: pointer;
+  background-color: rgba(249, 0, 83, 0.944) ;
+  color: white;
+}
+.postAdder-textarea {
+  background: transparent;
+  color: white;
+  border:1px solid white;
+  resize: none;
+  width: 90%;
+  border-radius: 4px;
+  padding: 5px 10px;
+  height: 15vh;
+  @include no-select
+}
+.postAdder-textarea::-webkit-scrollbar{
+  display: none;
+}
+.postAdder-textarea:focus{
+  outline: none;
+}
+.postAdder-textarea::placeholder{
+  color: rgba(255, 255, 255, 0.466);
+}
+.postAdder-textarea.input{
+  height: 50px;
+}
+
+.editText::-webkit-scrollbar {
+  display: none;
+}
+.editText {
+  border: 1px solid hwb(297 60% 0%);
+  border-radius: 3px;
+  color: rgb(54, 0, 76);
+}
+.editText:focus {
+  outline: none;
+}

@@ -1,26 +1,36 @@
 import React from "react";
 import truncate from "truncate";
-import { v4 as uuidv4   }from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
-import 'moment/locale/hy-am'
+import "moment/locale/hy-am";
 
 import Comment from "../Comment/Comment";
-import "./Post.scss"
+import "./Post.scss";
 
-const Post = ({setNewText,openedCom,setOpenedCom,setModalState, posts, post, user, setPosts,setIndex}) => {
+const Post = ({
+  setNewText,
+  openedCom,
+  setOpenedCom,
+  setModalState,
+  posts,
+  post,
+  user,
+  setPosts,
+  setIndex,
+}) => {
   const [seeMore, setSeeMore] = React.useState(false);
   // const [showComments, setShowComments] = React.useState(false);
   const [currentComment, setCurrentComment] = React.useState("");
-   moment().locale("hy-am")
-   let time = moment().format("LLL")
+  moment().locale("hy-am");
+  let time = moment().format("LLL");
   const handleSeeMore = () => {
     setSeeMore(!seeMore);
   };
   const handleCommentShow = () => {
     // setShowComments(!showComments);
-    let id ;
-    id = openedCom===post.id ?  "" : post.id
-    setOpenedCom(id)
+    let id;
+    id = openedCom === post.id ? "" : post.id;
+    setOpenedCom(id);
   };
   const handleNewCommentChange = (evt) => {
     setCurrentComment(evt.target.value);
@@ -47,28 +57,30 @@ const Post = ({setNewText,openedCom,setOpenedCom,setModalState, posts, post, use
     }
   };
   function handleEdit() {
-    setModalState({type:"edit",open:true});
+    setModalState({ type: "edit", open: true });
     setIndex(
       posts.findIndex((el) => {
-       return el.id === post.id;
+        return el.id === post.id;
       })
     );
-    setNewText(post.text)
+    setNewText({description:post.text,title:post.title});
   }
   function handleDelete() {
-    setModalState({type:"delete",open:true})
+    setModalState({ type: "delete", open: true });
     setIndex(
       posts.findIndex((el) => {
-       return el.id === post.id;
+        return el.id === post.id;
       })
     );
-
   }
   return (
     <div className="wholePostContainer">
       <div className="postContainer">
         <div className="upPost">
-          <h2>{post.title}</h2>
+          <h2 style={{ fontWeight: "200" }}>{post.title}</h2>
+          <span style={{ color: "grey", fontWeight: "700" }}>
+            {post.createdAt}
+          </span>
           <div className="controlPost">
             <img
               className="editImg"
@@ -87,45 +99,53 @@ const Post = ({setNewText,openedCom,setOpenedCom,setModalState, posts, post, use
         <div className="innerPost">
           <p className="PostText">
             {truncate(post.text, seeMore ? post.text.length : 50)}{" "}
-            <a href="#" className="seeLessMore" onClick={handleSeeMore}>
-              See {!seeMore ? "More" : "Less"}
-            </a>
+            {post.text.length > 50 && (
+              <a href="#" className="seeLessMore" onClick={handleSeeMore}>
+                See {!seeMore ? "More" : "Less"}
+              </a>
+            )}
           </p>
         </div>
+      {post.modifiedAt && <span style={{
+        padding:"20px 5px",
+        color:"rgb(249, 45, 126)"
+      }}><span style={{color:"rgba(51, 57, 140, 0.76)"}}>Փոփոխվել է - </span>{post.modifiedAt}</span>}
       </div>
-      
+
       <span className="commentViewer">
         <button onClick={handleCommentShow} className="commentShower">
           {openedCom == post.id ? "Close Comments" : "Show Comments"}
         </button>
-        {openedCom !== post.id
-          && post.comments
-            ? "(" + post.comments.length + " Comments)"
-            : null}
+        {openedCom !== post.id && post.comments
+          ? "(" + post.comments.length + " Comments)"
+          : null}
       </span>
       <div className="commentsContainer">
-        { openedCom === post.id
-          ? <> <div className="typeNewComment">
-        <textarea
-          value={currentComment}
-          onChange={handleNewCommentChange}
-          className="newCommentTextarea"
-          name=""
-          id=""
-          cols="80"
-          rows="3"
-        ></textarea>
-        <div onClick={handleCommentAdd} className="submitComment">
-          <img
-            className="submitCommentIcon"
-            src="https://cdn-icons-png.flaticon.com/512/3388/3388627.png"
-            alt=""
-          />
-        </div>
-      </div> {post.comments.map((el, i) => {
-              return <Comment key={i} comment={el} /> 
+        {openedCom === post.id ? (
+          <>
+            {" "}
+            <div className="typeNewComment">
+              <textarea
+                value={currentComment}
+                onChange={handleNewCommentChange}
+                className="newCommentTextarea"
+                name=""
+                id=""
+                cols="80"
+                rows="3"></textarea>
+              <div onClick={handleCommentAdd} className="submitComment">
+                <img
+                  className="submitCommentIcon"
+                  src="https://cdn-icons-png.flaticon.com/512/3388/3388627.png"
+                  alt=""
+                />
+              </div>
+            </div>{" "}
+            {post.comments.map((el, i) => {
+              return <Comment key={i} comment={el} />;
             })}
-         </> : null}
+          </>
+        ) : null}
       </div>
     </div>
   );
