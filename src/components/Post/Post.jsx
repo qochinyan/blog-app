@@ -1,10 +1,13 @@
 import React from "react";
 import truncate from "truncate";
-import Comment from "../Comment/Comment";
 import { v4 as uuidv4   }from "uuid";
 import moment from "moment";
 import 'moment/locale/hy-am'
-const Post = ({openedCom,setOpenedCom,setModalType, posts, post, user, setPosts,setIndex}) => {
+
+import Comment from "../Comment/Comment";
+import "./Post.scss"
+
+const Post = ({setNewText,openedCom,setOpenedCom,setModalState, posts, post, user, setPosts,setIndex}) => {
   const [seeMore, setSeeMore] = React.useState(false);
   // const [showComments, setShowComments] = React.useState(false);
   const [currentComment, setCurrentComment] = React.useState("");
@@ -44,15 +47,16 @@ const Post = ({openedCom,setOpenedCom,setModalType, posts, post, user, setPosts,
     }
   };
   function handleEdit() {
-    setModalType({type:"edit",open:true});
+    setModalState({type:"edit",open:true});
     setIndex(
       posts.findIndex((el) => {
        return el.id === post.id;
       })
     );
+    setNewText(post.text)
   }
   function handleDelete() {
-    setModalType({type:"delete",open:true})
+    setModalState({type:"delete",open:true})
     setIndex(
       posts.findIndex((el) => {
        return el.id === post.id;

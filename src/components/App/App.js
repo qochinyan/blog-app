@@ -7,13 +7,16 @@ import Post from "../Post/Post";
 
 function App() {
   const [posts, setPosts] = useState(userPosts);
-  const [users] = useState(authors);
   const [watchingComments, setWatchingComments] = useState("");
+  const [newText,setNewText] = useState("");
+  const [index, setIndex] = useState();
+  const [modalState, setModalState] = React.useState({
+    open: false,
+    type: "none",
+  });
   const findUser = (userId) => {
-    return users.find((user) => user.id === userId);
+    return authors.find((user) => user.id === userId);
   };
-  const[index,setIndex]=useState()
-  const [modalState, setModalState] = React.useState({open:false,deleting:false});
   // Modal
   let subtitle;
   const customStylesModal = {
@@ -26,22 +29,36 @@ function App() {
       transform: "translate(-50%, -50%)",
       display: "flex",
       flexDirection: "column",
-      width: "700px",
-      height: "500px",
+      width: modalState.type === "edit" ? "800px" : "400px",
+      height: modalState.type === "edit" ? "350px" : "200px",
       alignItems: "center",
       justifyContent: "space-around",
+      borderColor:
+        modalState.type === "edit" ? "rgb(54, 0, 76)" : "rgb(0,76,13,.7)",
     },
   };
-  
 
   function openModal() {
-    setModalState({...modalState,open:true});
+    setModalState({ ...modalState, open: true });
   }
 
-  
-
   function closeModal() {
-    setModalState({...modalState,open:false});
+    setModalState({ ...modalState, open: false });
+  }
+  function deletePost() {
+    let newPost = [...posts];
+    newPost.splice(index, 1);
+    setPosts(newPost);
+    closeModal();
+  }
+  function handleEditPost() {
+    let newPosts = [...posts];
+    newPosts[index].text = newText;
+    setPosts(newPosts)
+    closeModal()
+  }
+  function handleNewTextChange(evt) {
+    setNewText(evt.target.value)
   }
   return (
     <div className="App">
@@ -57,6 +74,7 @@ function App() {
           user={findUser(post.userId)}
           setModalState={setModalState}
           setIndex={setIndex}
+          setNewText={setNewText}
         />
       ))}
       <Modal
@@ -64,14 +82,87 @@ function App() {
         // onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStylesModal}
-        contentLabel="Example Modal"
-      >
-       {modalState.type==="edit" && <textarea value={posts[index].text} style={{ resize: "none" ,width:"400px",height:"150px",padding:"10px 20px"}}></textarea>}
+        contentLabel="Example Modal">
+        {modalState.type === "edit" ? (
+          <>
+            <textarea
+              onChange={handleNewTextChange}
+              value={newText}
+              style={{
+                resize: "none",
+                width: "600px",
+                height: "150px",
+                padding: "10px 20px",
+                overflow: "auto",
+              }}
+              className="editText"></textarea>
 
-        <div style={{width:"250px",display:"flex",justifyContent:"space-between"}}>
-          <button style={{width:"100px",height:"40px"}} onClick={closeModal}>Close</button>
-          <button style={{width:"100px",height:"40px"}} onClick={closeModal}>Save</button>
-        </div>
+            <div
+              style={{
+                width: "250px",
+                display: "flex",
+                justifyContent: "space-between",
+              }}>
+              <button
+                style={{
+                  width: "100px",
+                  height: "40px",
+                  border: "none",
+                  background: "rgb(255, 0, 55)",
+                  color: "white",
+                }}
+                onClick={closeModal}>
+                Close
+              </button>
+              <button
+                style={{
+                  width: "100px",
+                  height: "40px",
+                  border: "none",
+                  background: "lime",
+                  color: "white",
+                }}
+                onClick={handleEditPost}>
+                Save
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 style={{ color: "rgb(0,76,13)", fontWeight: "400" }}>
+              Do you Want to Delete Post?
+            </h2>
+            <div
+              style={{
+                width: "220px",
+                display: "flex",
+                justifyContent: "space-between",
+              }}>
+              <button
+                style={{
+                  width: "100px",
+                  height: "40px",
+                  border: "none",
+                  background: "red",
+                  color: "white",
+                }}
+                onClick={closeModal}>
+                No
+              </button>
+              <button
+                style={{
+                  width: "100px",
+                  height: "40px",
+                  border: "none",
+                  background: "green",
+                  color: "white",
+                }}
+                onClick={deletePost}>
+                Yes
+              </button>
+            </div>
+          </>
+        )}
       </Modal>
     </div>
   );
