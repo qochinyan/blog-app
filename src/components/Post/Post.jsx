@@ -28,8 +28,7 @@ const Post = ({
   };
   const handleCommentShow = () => {
     // setShowComments(!showComments);
-    let id;
-    id = openedCom === post.id ? "" : post.id;
+    let id = openedCom === post.id ? "" : post.id;
     setOpenedCom(id);
   };
   const handleNewCommentChange = (evt) => {
@@ -40,14 +39,25 @@ const Post = ({
       let currPosts = [...posts];
       for (let item of currPosts) {
         if (item.id === post.id) {
-          let coms = [...item.comments];
-          coms.push({
-            id: uuidv4(),
-            userId: user.id,
-            text: currentComment,
-            createdAt: time,
-          });
-          item.comments = coms;
+          if (item.comments) {
+            let coms = [...item.comments];
+            coms.push({
+              id: uuidv4(),
+              userId: user.id,
+              text: currentComment,
+              createdAt: time,
+            });
+            item.comments = [...coms];
+          } else {
+            item.comments = [
+              {
+                id: uuidv4(),
+                userId: user.id,
+                text: currentComment,
+                createdAt: time,
+              },
+            ];
+          }
         }
       }
       setCurrentComment("");
@@ -63,7 +73,7 @@ const Post = ({
         return el.id === post.id;
       })
     );
-    setNewText({description:post.text,title:post.title});
+    setNewText({ description: post.text, title: post.title });
   }
   function handleDelete() {
     setModalState({ type: "delete", open: true });
@@ -106,10 +116,18 @@ const Post = ({
             )}
           </p>
         </div>
-      {post.modifiedAt && <span style={{
-        padding:"20px 5px",
-        color:"rgb(249, 45, 126)"
-      }}><span style={{color:"rgba(51, 57, 140, 0.76)"}}>Փոփոխվել է - </span>{post.modifiedAt}</span>}
+        {post.modifiedAt && (
+          <span
+            style={{
+              padding: "20px 5px",
+              color: "rgb(249, 45, 126)",
+            }}>
+            <span style={{ color: "rgba(51, 57, 140, 0.76)" }}>
+              Փոփոխվել է -{" "}
+            </span>
+            {post.modifiedAt}
+          </span>
+        )}
       </div>
 
       <span className="commentViewer">
@@ -141,9 +159,10 @@ const Post = ({
                 />
               </div>
             </div>{" "}
-            {post.comments.map((el, i) => {
-              return <Comment key={i} comment={el} />;
-            })}
+            {post.comments &&
+              post.comments.map((el, i) => {
+                return <Comment key={i} comment={el} />;
+              })}
           </>
         ) : null}
       </div>
