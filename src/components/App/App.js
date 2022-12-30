@@ -75,15 +75,21 @@ function App() {
   }
   function handleEditPost() {
     let newPosts = [...posts];
-    newPosts[index].text = newText.description;
-    newPosts[index].title = newText.title;
-    newPosts[index].modifiedAt = moment().format("LLL")
-    axios
-      .put(`${URL}posts/${posts[index].id}.json`, newPosts[index])
-      .then(() => {
-        setPosts(newPosts);
-        closeModal();
-      });
+    if (
+      newPosts[index].text === newText.description &&
+      newPosts[index].title === newText.title
+    ) {
+    } else {
+      newPosts[index].text = newText.description;
+      newPosts[index].title = newText.title;
+      newPosts[index].modifiedAt = moment().format("LLL");
+      axios
+        .put(`${URL}posts/${posts[index].id}.json`, newPosts[index])
+        .then(() => {
+          setPosts(newPosts);
+        });
+    }
+    closeModal();
   }
   function handleTitleChange(evt) {
     setNewText({ ...newText, title: evt.target.value });
@@ -92,7 +98,10 @@ function App() {
     setNewText({ ...newText, description: evt.target.value });
   }
   function handleAddPost() {
-    if (newText.title.trim(" ") === "" || newText.description.trim(" ") === "") {
+    if (
+      newText.title.trim(" ") === "" ||
+      newText.description.trim(" ") === ""
+    ) {
       alert("inputs can't be empty");
     } else {
       let newPost = {
@@ -109,6 +118,10 @@ function App() {
         .post(`${URL}posts.json`, newPost)
         .then(() => setPosts([...posts, newPost]));
     }
+    setNewText({
+      title: "",
+      description: "",
+    })
   }
   return (
     <div className="App">

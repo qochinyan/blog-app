@@ -73,6 +73,7 @@ const Post = ({
         return el.id === post.id;
       })
     );
+    setOpenedCom("")
     setNewText({ description: post.text, title: post.title });
   }
   function handleDelete() {
@@ -82,28 +83,21 @@ const Post = ({
         return el.id === post.id;
       })
     );
+    setOpenedCom("")
   }
   return (
     <div className="wholePostContainer">
       <div className="postContainer">
         <div className="upPost">
-          <h2 style={{ fontWeight: "200" }}>{post.title}</h2>
-          <span style={{ color: "grey", fontWeight: "700" }}>
+          <h2 >{post.title}</h2>
+          <span style={{ color: "white", fontWeight: "700",position:"absolute",right:"90px" }}>
             {post.createdAt}
           </span>
           <div className="controlPost">
-            <img
-              className="editImg"
-              src="https://cdn-icons-png.flaticon.com/512/1057/1057097.png"
-              alt=""
-              onClick={handleEdit}
-            />
-            <img
-              className="delImg"
-              src="https://cdn-icons-png.flaticon.com/512/1632/1632602.png"
-              alt=""
-              onClick={handleDelete}
-            />
+            
+          <i class="gg-edit-markup " onClick={handleEdit}></i>
+
+            <i class="gg-remove" onClick={handleDelete}></i>
           </div>
         </div>
         <div className="innerPost">
@@ -120,9 +114,11 @@ const Post = ({
           <span
             style={{
               padding: "20px 5px",
-              color: "rgb(249, 45, 126)",
+              color: "white",
+              fontWeight:"400",
+              fontSize:"17px"
             }}>
-            <span style={{ color: "rgba(51, 57, 140, 0.76)" }}>
+            <span style={{fontSize:"17px", color: "rgb(183, 255, 0)" }}>
               Փոփոխվել է -{" "}
             </span>
             {post.modifiedAt}
@@ -150,7 +146,8 @@ const Post = ({
                 name=""
                 id=""
                 cols="80"
-                rows="3"></textarea>
+                rows="3"
+                placeholder="Add new comment"></textarea>
               <div onClick={handleCommentAdd} className="submitComment">
                 <img
                   className="submitCommentIcon"
